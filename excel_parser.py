@@ -19,3 +19,13 @@ def get_file():
     root.withdraw()
     file_path = filedialog.askopenfilename()
     return file_path
+
+def get_save_location():
+    root = tk.Tk()
+    root.withdraw()
+    save_location = filedialog.askdirectory()
+    return save_location
+
+def write_addresses(addresses, file_path):
+    dataframe = pandas.DataFrame(addresses, columns = ['Optimal address path'])
+    dataframe.to_excel(file_path)
