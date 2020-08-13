@@ -3,7 +3,9 @@ import requests
 from config import setmoreRefresh
 
 def datestring(date):
-    return str(date).split(" ")[0]
+    x = str(date).split("-")
+    x.reverse()
+    return "-".join(x)
 
 def tokenGetter():
     accessResponse = requests.get("https://developer.setmore.com/api/v1/o/oauth2/token?refreshToken=" + setmoreRefresh)
@@ -19,6 +21,8 @@ def appointmentGetter():
         + "&endDate=" 
         + datestring(tomorrow) 
         + "&customerDetails=true",
-        headers={'Authorization': 'access_token '+ tokenGetter()})
-    return appointments.text
+        headers = {
+            "Authorization": "Bearer "+ tokenGetter(),
+            "Content-Type" : "application/json"})
+    return appointments.json()["data"]["appointments"]
 print(appointmentGetter())
