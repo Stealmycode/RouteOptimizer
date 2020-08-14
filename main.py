@@ -7,7 +7,8 @@ def main():
     if '.xl' not in file_path:
         print("The selected file is not an excel file.")
         return
-    addresses = excel.get_addresses(file_path)
+    address_map = excel.get_address_map(file_path)
+    addresses = [k for k,v in address_map]
     optimal_path = calculate_optimal_path(addresses)
     print("This is the optimal travel path:")
     print(optimal_path)
