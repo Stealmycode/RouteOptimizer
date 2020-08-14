@@ -16,7 +16,7 @@ def appointmentGetter(today):
     tomorrow = today + datetime.timedelta(days = 1)
     appointments = requests.get(
         "https://developer.setmore.com/api/v1/bookingapi/appointments?"
-        + " startDate=" + datestring(today) 
+        + "startDate=" + datestring(today) 
         + "&endDate=" + datestring(tomorrow) 
         + "&customerDetails=true",
         headers = {
